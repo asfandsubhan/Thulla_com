@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thulla.com</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="hero arcade-hero">
+      <div>
+        <p class="eyebrow">Private table arena</p>
+        <h1>Thulla.com</h1>
+        <p class="subcopy">Deal cards, call bluffs, steal turns, and battle friends in private room-code matches on the same hotspot or Wi-Fi.</p>
+        <div class="game-chips" aria-label="Included games">
+          <span>Thulla</span>
+          <span>Bluff</span>
+          <span>Daketi</span>
+          <span>Gandu Pataa</span>
+        </div>
+      </div>
+      <div class="mini-table" aria-hidden="true">
+        <div class="fan-card red">A<br>&hearts;</div>
+        <div class="fan-card black">K<br>&spades;</div>
+        <div class="fan-card red">7<br>&diams;</div>
+        <div class="fan-card black">J<br>&clubs;</div>
+      </div>
+    </section>
+
+    <section id="entry" class="entry-grid">
+      <form id="createForm" class="panel">
+        <h2>Create game</h2>
+        <label>
+          Your name
+          <input name="name" maxlength="20" placeholder="Host name" required>
+        </label>
+        <label>
+          Game type
+          <select name="game">
+            <option value="thulla">Famous Thulla</option>
+            <option value="bluff">Bluff</option>
+            <option value="daketi">Daketi</option>
+            <option value="gandu">Gandu Pataa</option>
+          </select>
+        </label>
+        <label>
+          Max players
+          <input name="maxPlayers" type="number" min="2" max="7" value="7">
+        </label>
+        <button type="submit">Create private room</button>
+      </form>
+
+      <form id="joinForm" class="panel">
+        <h2>Join friends</h2>
+        <label>
+          Your name
+          <input name="name" maxlength="20" placeholder="Player name" required>
+        </label>
+        <label>
+          Room code
+          <input name="code" maxlength="5" placeholder="A1B2C" required>
+        </label>
+        <button type="submit">Join room</button>
+        <p class="hint">No random matchmaking: every room needs a code from the host.</p>
+      </form>
+    </section>
+
+    <section id="game" class="game hidden">
+      <header class="table-header">
+        <div>
+          <p class="eyebrow" id="gameName">Game</p>
+          <h2 id="roomTitle">Room</h2>
+          <p id="gameDescription" class="hint"></p>
+        </div>
+        <div class="room-tools">
+          <button id="leaveRoom" class="danger-button" type="button">Back</button>
+          <button id="copyCode" type="button">Copy code</button>
+          <button id="startGame" type="button">Start</button>
+          <button id="resetRoom" type="button">Reset</button>
+        </div>
+      </header>
+
+      <div id="message" class="message hidden"></div>
+
+      <div class="table-layout">
+        <aside class="players panel">
+          <h3>Players</h3>
+          <div id="players"></div>
+        </aside>
+
+        <section class="felt">
+          <div class="pile-zone">
+            <div class="deck-card">
+              <span id="deckCount">0</span>
+              <small>Deck</small>
+            </div>
+            <div id="pileTop" class="card back-card">
+              <span>TH</span>
+              <small>Pile</small>
+            </div>
+            <div class="claim">
+              <strong id="turnLabel">Waiting</strong>
+              <span id="claimLabel">Create or join a room.</span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <select id="declaredRank" aria-label="Declared rank"></select>
+            <button id="playCards" type="button">Play selected</button>
+            <button id="drawCard" type="button">Draw</button>
+            <button id="callBluff" type="button">Call bluff</button>
+          </div>
+
+          <div>
+            <h3>Your hand</h3>
+            <div id="hand" class="hand"></div>
+          </div>
+        </section>
+
+        <aside class="panel log-panel">
+          <h3>Table log</h3>
+          <div id="log"></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
